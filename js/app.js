@@ -24,7 +24,7 @@ var app = {
                 "<div class='col2'></div>" +
             "</div>" +
         "</div>"+
-        "<audio id='sound' src='Illberd- Sloppy.mp3' muted='muted'></audio>"
+        "<audio id='sound' src='media/Illberd- Sloppy.mp3' muted='muted'></audio>"
     ),
     data: [],
     cardStates: [0,0,0,0,0,0,0,0],
