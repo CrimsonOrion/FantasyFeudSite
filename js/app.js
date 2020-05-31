@@ -23,8 +23,7 @@ var app = {
                 "<div class='col1'></div>" +
                 "<div class='col2'></div>" +
             "</div>" +
-        "</div>"+
-        "<audio id='sound' src='media/Illberd- Sloppy.mp3' muted='muted'></audio>"
+        "</div>"
     ),
     data: [],
     cardStates: [0,0,0,0,0,0,0,0],
@@ -112,7 +111,7 @@ var app = {
             let flipped = this.cardStates[i] === 1 ? true : false;
             $(cardHolderDiv).appendTo(parentDiv);
 
-            if (visible && flipped == false) {
+            if (visible && !flipped) {
                 let cardRotate = -180;
                 gsap.to(cards, 1, {rotationX:cardRotate, ease:backs.easeOut});
                 this.cardStates[i] = 1;
@@ -174,9 +173,20 @@ var app = {
     },
 
     playBuzzer() {
-        let x = document.getElementById('sound');
+        let x = document.getElementById('sound').play();
+
+        if (x !== undefined) {
+            x.then(_ => {
+                console.log("Success! Music is playing!")
+                //autoplay started!
+            }).catch(error => {
+                console.log(error);
+                // autoplay was prevented
+                // show a "play" button so that user can start playback
+            })
+        }
         //x.muted = true;
-        x.play();
+        //x.play();
     },
     
     // Startup
