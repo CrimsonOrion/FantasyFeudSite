@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'finalfantasy';
+    src: url('optiengeetienne-webfont.woff2') format('woff2'),
+         url('optiengeetienne-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
