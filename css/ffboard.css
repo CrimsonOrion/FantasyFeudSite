@@ -13,6 +13,12 @@ body {
   padding: 25px;
 }
 
+#mutedImg {
+  filter: invert(100%) sepia(97%) saturate(14%) hue-rotate(216deg) brightness(103%) contrast(100%);
+  height: 50px;
+  width: 50px;
+}
+
 .gameBoard .cardHolder>div,
 .gameBoard .LBG {
   background: darkred;

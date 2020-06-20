@@ -46,6 +46,7 @@ var app = {
         question.html("WELCOME!");
         col1.empty();
         col2.empty();
+        $('#mutedImg').click(this.toggleMuteAll);
         $('body').append(this.board);
     },
 
@@ -162,11 +163,29 @@ var app = {
 
     wrongAnswer() {
         if (this.strikes < 3) {
-            this.strikes++;
+            let count = ++this.strikes;
+            let src;
+            switch (count){
+                case 1:
+                    src = 'media/Moogles Answer Right.ogg'
+                    break;
+                case 2:
+                    src = 'media/Nope.mp3'
+                    break;
+                case 3:
+                    src = 'media/Nope.mp3'
+                    break;
+                default:
+                    console.log('switch statement didn\'t work.')
+                    break;
+            }
+            let sound = $('#sound');
+            sound.attr('src', src);
+            //sound.load();
             var strikeSpan = $('<span class="strikex">X</span>');
             var strikeDiv = $('.strikes');
             strikeDiv.append(strikeSpan);
-            app.playBuzzer();// <- This is the sound effect when I get it working.
+            app.playBuzzer();
             gsap.to(".strikes", {duration: 1, opacity: 100});
             gsap.to(".strikes", {duration: 1, opacity: 0, ease:"power2.inOut"});
         }
@@ -182,11 +201,23 @@ var app = {
             }).catch(error => {
                 console.log(error);
                 // autoplay was prevented
-                // show a "play" button so that user can start playback
             })
         }
         //x.muted = true;
         //x.play();
+    },
+
+    toggleMuteAll() {
+        let audio = $('audio');
+        let muted = audio[0].muted;
+        audio.each( elem => app.toggleMute(audio[elem], muted));
+        let muteButtonImg = !muted ? "img/muted.png" : "img/unmuted.png";
+        $('#mutedImg').attr("src", muteButtonImg);
+    },
+
+    toggleMute(elem, muted) {
+        elem.muted = !muted;
+        console.log(`${elem.id}.muted = ${elem.muted}`);
     },
     
     // Startup
