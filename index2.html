@@ -1,0 +1,132 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Fantasy Feud</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+        <link rel="stylesheet" href="css/fonts.css">
+        <link rel="stylesheet" href="css/ffboard.css">
+    </head>
+    <body>
+        <audio id="sound" muted="" src="media/Moogles_Answer_Right.mp3">Your browser does not support the audio element</audio>
+        <img id="mutedImg" src="img/muted.png">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+        
+        <!--- Strikes --->
+        <div class="strikes"></div>
+        
+        <!--- Game Board --->
+        <div class="gameBoard">
+            
+            <!--- Scores --->
+            <div class="score" id="boardScore">41</div>
+            <div class="score" id="team1Score">0
+                <div class="team" id="team1Names">
+                    <ul>Randy</ul>
+                    <ul>Jim</ul>
+                    <ul>Shellie</ul>
+                    <ul>Shellie</ul>
+                    <ul>Shellie</ul>
+                    <ul>Shellie</ul>
+                    <ul>Shellie</ul>
+                    <ul>Shellie</ul>
+                </div>
+            </div>
+            
+            <div class="score" id="team2Score">0
+                <div class="team" id="team2Names">
+                    <ul>Randy</ul>
+                    <ul>Jim</ul>
+                    <ul>Shellie</ul>
+                    <ul>Shellie</ul>
+                    <ul>Shellie</ul>
+                    <ul>Shellie</ul>
+                    <ul>Shellie</ul>
+                    <ul>Shellie</ul>
+                </div>
+            </div>
+
+            <!-- Teams -->
+            
+            
+            <!--- Question --->
+            <div class="questionHolder">
+                <span class="question">How many Animas have you completed?</span>
+            </div>
+            
+            <!--- Answers --->
+            <div class="colHolder">
+                <div class="col1">
+                    <div class="cardHolder">
+                        <div class="card" style="background: url(&quot;img/01.png&quot;); transform-style: preserve-3d; transform: rotateX(-180deg);">
+                            <div class="front" style="backface-visibility: hidden;"></div>
+                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
+                                <span>ONE</span>
+                                <b class="LBG">38</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardHolder">
+                        <div class="card" style="background: url(&quot;img/02.png&quot;); transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden;"></div>
+                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
+                                <span>ZERO</span>
+                                <b class="LBG">28</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardHolder">
+                        <div class="card" style="background: url(&quot;img/03.png&quot;); transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden;"></div>
+                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
+                                <span>TWO</span>
+                                <b class="LBG">17</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardHolder">
+                        <div class="card" style="background: url(&quot;img/04.png&quot;); transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden;"></div>
+                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
+                                <span>THREE</span>
+                                <b class="LBG">9</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col2">
+                    <div class="cardHolder">
+                        <div class="card" style="background: url(&quot;img/05.png&quot;); transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden;"></div>
+                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
+                                <span>FOUR</span>
+                                <b class="LBG">4</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardHolder">
+                        <div class="card" style="background: url(&quot;img/06.png&quot;); transform-style: preserve-3d; transform: rotateX(-180deg);">
+                            <div class="front" style="backface-visibility: hidden;"></div>
+                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
+                                <span>FIVE</span>
+                                <b class="LBG">2</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardHolder">
+                        <div class="card" style="background: url(&quot;img/07.png&quot;); transform-style: preserve-3d; transform: rotateX(-180deg);">
+                            <div class="front" style="backface-visibility: hidden;"></div>
+                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
+                                <span>SIX</span>
+                                <b class="LBG">1</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardHolder empty">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -82,12 +82,25 @@ body {
 .gameBoard .score#team1Score {
   left: 10px;
   top: 0;
-  bottom: 0;
+  /*bottom: 0;*/
+  bottom: 400;
 }
+
 .gameBoard .score#team2Score {
   right: 10px;
   top: 0;
-  bottom: 0;
+  /*bottom: 0;*/
+  bottom: 400;
+}
+
+/* NEW */
+.gameBoard .score .team {
+  line-height: 0;
+}
+
+/* NEW */
+.gameBoard .score .team ul {
+  padding-inline-start: 0;
 }
 
 .gameBoard .questionHolder {

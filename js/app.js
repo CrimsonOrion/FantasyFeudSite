@@ -1,7 +1,7 @@
 var app = {
     version: 1,
-    //source: new EventSource('http://localhost:3001/events'),
-    source: new EventSource('https://fierce-citadel-94246.herokuapp.com/events'),
+    source: new EventSource('http://localhost:3001/events'),
+    //source: new EventSource('https://fierce-citadel-94246.herokuapp.com/events'),
     board: $(""+
         "<!--- Strikes --->"+
         "<div class='strikes'></div>"+
@@ -89,7 +89,7 @@ var app = {
 
         team1.html(this.data.Team1Score);
         team2.html(this.data.Team2Score);
-        question.html(this.data.Question.replace(/&x22;/gi,'"'));
+        question.html(this.data.Question);//.replace(/&x22;/gi,'"'));
         let boardScoreValue = 0;
         let visible = false;
         for (let i = 0; i < 8; i++) {
