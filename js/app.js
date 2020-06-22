@@ -1,6 +1,7 @@
 var app = {
     version: 1,
-    source: new EventSource('http://localhost:3001/events'),
+    //source: new EventSource('http://localhost:3001/events'),
+    source: new EventSource('https://fierce-citadel-94246.herokuapp.com/events'),
     board: $(""+
         "<!--- Strikes --->"+
         "<div class='strikes'></div>"+
@@ -53,15 +54,21 @@ var app = {
     startListener() {
         this.source.addEventListener('message', message => {
             console.clear();
-            console.log('Got', message);
+            console.log('Got update');
+            
+            let messageOrigin = message.origin + '/events';
+            if (messageOrigin !== this.source.url) {
+                console.log('Invalid updated from ' + message.origin);
+                return;
+            }
+
             if (message.data !== "[]") {
                 this.data = JSON.parse(message.data);
                 
-                if (message.data.includes("[")) {
+                if (this.data.length > 1) {
                     this.data = this.data[this.data.length - 1];
                 }
                 
-                //app.updateBoard();
                 app.updateBoardRotate();
             }
         });
@@ -116,6 +123,10 @@ var app = {
                 let cardRotate = -180;
                 gsap.to(cards, 1, {rotationX:cardRotate, ease:backs.easeOut});
                 this.cardStates[i] = 1;
+                let sound = $('#sound');
+                let src = 'media/Moogles_Answer_Right.mp3';
+                sound.attr('src', src);
+                app.playBuzzer();
                 flipped = true;
             }
             else if (!visible && flipped) {
@@ -167,7 +178,7 @@ var app = {
             let src;
             switch (count){
                 case 1:
-                    src = 'media/Moogles Answer Right.ogg'
+                    src = 'media/Nope.mp3'
                     break;
                 case 2:
                     src = 'media/Nope.mp3'
@@ -181,7 +192,6 @@ var app = {
             }
             let sound = $('#sound');
             sound.attr('src', src);
-            //sound.load();
             var strikeSpan = $('<span class="strikex">X</span>');
             var strikeDiv = $('.strikes');
             strikeDiv.append(strikeSpan);
