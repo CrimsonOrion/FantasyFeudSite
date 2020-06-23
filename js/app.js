@@ -41,22 +41,28 @@ var app = {
     data: [],
     cardStates: [0,0,0,0,0,0,0,0],
     strikes: 0,
-    team1Name: "",
-    team2Name: "",
+    team1Name: "Team 1",
+    team2Name: "Team 2",
     team1Score: 0,
     team2Score: 0,
+    team1Members: [],
+    team2Members: [],
 
     buildBoard() {
         let boardScore = this.board.find("#boardScore");
-        let team1 = this.board.find("#team1Score");
-        let team2 = this.board.find("#team2Score");
+        let team1Score = this.board.find("#team1Score");
+        let team2Score = this.board.find("#team2Score");
+        let team1Name = this.board.find("#team1Name");
+        let team2Name = this.board.find("#team2Name");
         let question = this.board.find(".question");
         let col1 = this.board.find(".col1");
         let col2 = this.board.find(".col2");
         boardScore.html(0);
-        team1.html(this.team1Score);
-        team2.html(this.team2Score);
-        question.html("WELCOME!");
+        team1Score.html(this.team1Score);
+        team2Score.html(this.team2Score);
+        team1Name.html(this.team1Name);
+        team2Name.html(this.team2Name);
+        question.html("Welcome to Fantasy Feud!");
         col1.empty();
         col2.empty();
         $('#mutedImg').click(this.toggleMuteAll);
@@ -91,16 +97,27 @@ var app = {
             nullTargetWarn: false
         });
         let boardScore = $("#boardScore");
-        let team1 = $("#team1Score");
-        let team2 = $("#team2Score");
+        let team1Score = $("#team1Score");
+        let team2Score = $("#team2Score");
+        let team1Name = $("#team1Name");
+        let team2Name = $("#team2Name");
+        let team1Members = $("#team1Members");
+        let team2Members = $("#team2Members");
         let question = $(".question");
         let col1 = $(".col1");
         let col2 = $(".col2");
         col1.empty();
         col2.empty();
-
-        team1.html(this.data.Team1Score);
-        team2.html(this.data.Team2Score);
+        team1Members.empty();
+        team2Members.empty();
+        team1Score.html(this.data.Team1Score);
+        team2Score.html(this.data.Team2Score);
+        team1Name.html(this.data.Team1Name);
+        team2Name.html(this.data.Team2Name);
+        team1Members.append(team1Name);
+        team2Members.append(team2Name);
+        app.insertTeamMembers(team1Members, this.data.Team1Members);
+        app.insertTeamMembers(team2Members, this.data.Team2Members);
         question.html(this.data.Question);//.replace(/&x22;/gi,'"'));
         let boardScoreValue = 0;
         let visible = false;
@@ -127,7 +144,6 @@ var app = {
             gsap.set(backs       , {rotationX:this.cardStates[i] === 1 ? 0 : 180});
             gsap.set(cardSides   , {backfaceVisibility:"hidden"});
 
-            // TESTING
             let flipped = this.cardStates[i] === 1 ? true : false;
             $(cardHolderDiv).appendTo(parentDiv);
 
@@ -156,20 +172,29 @@ var app = {
             app.wrongAnswer();
         }
     },
+
+    insertTeamMembers(teamMembersUL, teamMembers) {
+        for (let i = 0; i < teamMembers.length; i++) {
+            let member = teamMembers[i];
+            let memberNameLI = "<li" + (member.Active === 1 ? " id='active'>" : ">") + member.Name + "</li>";
+            teamMembersUL.append(memberNameLI);
+        }
+    },
     
     cardHolderFill(data, picNum) {
         let cardHolderDiv = $("" + 
-        "<div class='cardHolder'>"+
-            "<div class='card' style=\"background: url(img/0" + picNum + ".png)\">"+
-                "<div class='front'>"+
-            
+            "<div class='cardHolder'>"+
+                "<div class='card' style=\"background: url(img/0" + picNum + ".png)\">"+
+                    "<div class='front'>"+
+                
+                    "</div>"+
+                    "<div class='back DBG'>"+
+                        "<span>"+data.Answer+"</span>"+
+                        "<b class='LBG'>"+data.Value+"</b>"+
+                    "</div>"+
                 "</div>"+
-                "<div class='back DBG'>"+
-                    "<span>"+data.Answer+"</span>"+
-                    "<b class='LBG'>"+data.Value+"</b>"+
-                "</div>"+
-            "</div>"+
-        "</div>");
+            "</div>"
+        );
 
         return cardHolderDiv;
     },
