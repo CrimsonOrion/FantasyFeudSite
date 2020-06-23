@@ -8,22 +8,34 @@ var app = {
 
         "<!--- Game Board --->" +
         "<div class='gameBoard'>" +
-                
+
             "<!--- Scores --->"+
             "<div class='score' id='boardScore'></div>" +
             "<div class='score' id='team1Score'></div>" +
             "<div class='score' id='team2Score'></div>" +
-            
+
             "<!--- Question --->" +
             "<div class='questionHolder'>" +
                 "<span class='question'></span>" +
             "</div>" +
-                
+
             "<!--- Answers --->" +
             "<div class='colHolder'>" +
                 "<div class='col1'></div>" +
                 "<div class='col2'></div>" +
             "</div>" +
+        "</div>" +
+        
+        "<!--- Teams --->" +
+        "<div class='team'>" +
+            "<ul class='teamMembers' id='team1Members'>" +
+                "<li id='team1Name'>Team 1</li>" +
+            "</ul>" +
+        "</div>" +
+        "<div class='team'>" +
+            "<ul class='teamMembers' id='team2Members'>" +
+                "<li id='team2Name'>Team 2</li>" +
+            "</ul>" +
         "</div>"
     ),
     data: [],

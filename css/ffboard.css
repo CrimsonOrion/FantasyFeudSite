@@ -1,6 +1,7 @@
 html {
     height: 100%;
     width: 100%;
+    min-width: 800px;
 }
 
 body {
@@ -14,24 +15,10 @@ body {
 }
 
 #mutedImg {
+  position: fixed;
   filter: invert(100%) sepia(97%) saturate(14%) hue-rotate(216deg) brightness(103%) contrast(100%);
   height: 50px;
   width: 50px;
-}
-
-.gameBoard .cardHolder>div,
-.gameBoard .LBG {
-  background: darkred;
-}
-
-.gameBoard .cardHolder>div:empty {
-  background:url('../img/Blank.png') goldenrod;
-}
-
-.gameBoard .score,
-.gameBoard .button,
-.gameBoard .DBG {
-  background: black;
 }
 
 .gameBoard {
@@ -70,6 +57,7 @@ body {
   -moz-box-shadow: inset 0 1px 24px 1px rgba(0, 0, 0, 0.48);
   box-shadow: inset 0 1px 24px 1px rgba(0, 0, 0, 0.48);
 }
+
 .gameBoard .score#boardScore {
   height: 75px;
   line-height: 75px;
@@ -79,28 +67,17 @@ body {
   right: 0;
   top: 20px;
 }
+
 .gameBoard .score#team1Score {
   left: 10px;
   top: 0;
-  /*bottom: 0;*/
-  bottom: 400;
+  bottom: 0;
 }
 
 .gameBoard .score#team2Score {
   right: 10px;
   top: 0;
-  /*bottom: 0;*/
-  bottom: 400;
-}
-
-/* NEW */
-.gameBoard .score .team {
-  line-height: 0;
-}
-
-/* NEW */
-.gameBoard .score .team ul {
-  padding-inline-start: 0;
+  bottom: 0;
 }
 
 .gameBoard .questionHolder {
@@ -201,7 +178,22 @@ body {
   border: 2px solid #003c7b;
 }
 
-.gameBoard .btnHolder{
+.gameBoard .cardHolder>div,
+.gameBoard .LBG {
+  background: darkred;
+}
+
+.gameBoard .cardHolder>div:empty {
+  background:url('../img/Blank.png') goldenrod;
+}
+
+.gameBoard .score,
+.gameBoard .button,
+.gameBoard .DBG {
+  background: black;
+}
+
+.gameBoard .btnHolder {
   position: absolute;
   margin: auto;
   left:0;
@@ -209,7 +201,7 @@ body {
   bottom:45px
 }
 
-.gameBoard .btnHolder .button{
+.gameBoard .btnHolder .button {
   cursor: pointer;
   display:inline-block;
   font-size: 35px;
@@ -223,11 +215,11 @@ body {
   box-shadow: 0 1px 24px 1px rgba(0, 0, 0, 0.48);
 }
 
-.gameBoard .btnHolder .button#awardTeam1{
+.gameBoard .btnHolder .button#awardTeam1 {
   border-radius: 50px 0 0 50px;
 }
 
-.gameBoard .btnHolder .button#awardTeam2{
+.gameBoard .btnHolder .button#awardTeam2 {
   border-radius: 0 50px 50px 0;
 }
 
@@ -257,4 +249,43 @@ body {
   height: 30%;
   margin: 10px;
   width: 200px;
+}
+
+.team {
+  position: relative;
+  font-family: 'finalfantasy';
+  font-size: 40px;
+  color: gray;
+  width: fit-content;
+  border: 2px solid white;
+  background: black;
+  padding: 10px;
+  margin: auto;
+  margin-top: 10px;
+  left: 0;
+  right: 0;
+  min-width: max-content;
+}
+
+.team .teamMembers {
+  padding-inline-start: 0px;
+  margin-block-start: -10px;
+}
+
+.team .teamMembers li {
+  list-style-type: none;
+  width: auto;
+  text-align: left;
+  float: left;
+  margin-right: 15;
+}
+
+#team1Name, #team2Name{
+  color: seagreen;
+  padding: 0px 10px;
+}
+
+li#active {
+  /* Goldenrod1 */
+  color: #FFC125;
 }
