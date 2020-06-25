@@ -1,7 +1,7 @@
 var app = {
     version: 1,
-    //source: new EventSource('http://localhost:3001/events'),
-    source: new EventSource('https://fierce-citadel-94246.herokuapp.com/events'),
+    source: new EventSource('http://localhost:3001/events'),
+    //source: new EventSource('https://fierce-citadel-94246.herokuapp.com/events'),
     board: $(""+
         "<!--- Strikes --->"+
         "<div class='strikes'></div>"+
@@ -47,6 +47,7 @@ var app = {
     team2Score: 0,
     team1Members: [],
     team2Members: [],
+    questionText: "Welcome to Fantasy Feud!",
 
     buildBoard() {
         gsap.registerPlugin(TextPlugin);
@@ -63,18 +64,13 @@ var app = {
         team2Score.html(this.team2Score);
         team1Name.html(this.team1Name);
         team2Name.html(this.team2Name);
+        //app.checkQuestion();
         //question.html("Welcome to Fantasy Feud!");
-        gsap.to(question, {
-            delay: 1,
-            duration: 2.5, 
-            text: {
-                value: "Welcome to Fantasy Feud!"
-            }
-        });
         col1.empty();
         col2.empty();
         $('#mutedImg').click(this.toggleMuteAll);
         $('body').append(this.board);
+        app.checkQuestion();
     },
 
     startListener() {
@@ -126,7 +122,8 @@ var app = {
         team2Members.append(team2Name);
         app.insertTeamMembers(team1Members, this.data.Team1Members);
         app.insertTeamMembers(team2Members, this.data.Team2Members);
-        question.html(this.data.Question);//.replace(/&x22;/gi,'"'));
+        app.checkQuestion();
+        //question.html(this.data.Question);//.replace(/&x22;/gi,'"'));
         let boardScoreValue = 0;
         let visible = false;
         for (let i = 0; i < 8; i++) {
@@ -190,6 +187,27 @@ var app = {
             let memberNameLI = "<li" + (member.Active === 1 ? " id='active'>" : ">") + member.Name + "</li>";
             teamMembersUL.append(memberNameLI);
         }
+    },
+
+    checkQuestion() {
+        if (this.data.length === 0) {
+            app.changeQuestion(this.questionText, 1, 2.5);
+        } else if (this.questionText !== this.data.Question) {
+            this.changeQuestion("",0,0);
+            this.changeQuestion(this.data.Question, 1, 2.5);
+            this.questionText = this.data.Question;
+        }
+    },
+
+    changeQuestion(qText, delay, duration) {
+        let q = $('.question');
+        gsap.to(q, {
+            delay: delay,
+            duration: duration,
+            text: {
+                value: qText
+            }
+        });
     },
     
     cardHolderFill(data, picNum) {
