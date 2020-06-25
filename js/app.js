@@ -1,7 +1,7 @@
 var app = {
     version: 1,
-    source: new EventSource('http://localhost:3001/events'),
-    //source: new EventSource('https://fierce-citadel-94246.herokuapp.com/events'),
+    //source: new EventSource('http://localhost:3001/events'),
+    source: new EventSource('https://fierce-citadel-94246.herokuapp.com/events'),
     board: $(""+
         "<!--- Strikes --->"+
         "<div class='strikes'></div>"+
@@ -168,8 +168,11 @@ var app = {
         }
 
         let dataStrikes = this.data.Strikes;
-        if (this.strikes < dataStrikes) {
+        if (this.strikes < this.data.Strikes) {
             app.wrongAnswer();
+        } else if (this.data.Strikes < this.strikes) {
+            this.strikes = this.data.Strikes;
+            $('.strikes').empty();
         }
     },
 
@@ -210,32 +213,28 @@ var app = {
     },
 
     wrongAnswer() {
-        if (this.strikes < 3) {
-            let count = ++this.strikes;
-            let src;
-            switch (count){
-                case 1:
-                    src = 'media/Nope.mp3'
-                    break;
-                case 2:
-                    src = 'media/Nope.mp3'
-                    break;
-                case 3:
-                    src = 'media/Nope.mp3'
-                    break;
-                default:
-                    console.log('switch statement didn\'t work.')
-                    break;
-            }
-            let sound = $('#sound');
-            sound.attr('src', src);
-            var strikeSpan = $('<span class="strikex">X</span>');
-            var strikeDiv = $('.strikes');
-            strikeDiv.append(strikeSpan);
-            app.playBuzzer();
-            gsap.to(".strikes", {duration: 1, opacity: 100});
-            gsap.to(".strikes", {duration: 1, opacity: 0, ease:"power2.inOut"});
+        let src;
+        switch (++this.strikes){
+            case 1:
+            case 2:
+            case 3:
+                src = 'media/Nope.mp3'
+                break;
+            case 4:
+                src = 'media/Illberd-Sloppy.mp3'
+                break;
+            default:
+                console.log('switch statement didn\'t work.')
+                break;
         }
+        let sound = $('#sound');
+        sound.attr('src', src);
+        var strikeSpan = $('<span class="strikex">X</span>');
+        var strikeDiv = $('.strikes');
+        strikeDiv.append(strikeSpan);
+        app.playBuzzer();
+        gsap.to(".strikes", {duration: 1, opacity: 100});
+        gsap.to(".strikes", {duration: 1, opacity: 0, ease:"power2.inOut"});
     },
 
     playBuzzer() {
