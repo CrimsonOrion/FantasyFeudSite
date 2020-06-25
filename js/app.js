@@ -49,6 +49,7 @@ var app = {
     team2Members: [],
 
     buildBoard() {
+        gsap.registerPlugin(TextPlugin);
         let boardScore = this.board.find("#boardScore");
         let team1Score = this.board.find("#team1Score");
         let team2Score = this.board.find("#team2Score");
@@ -62,7 +63,14 @@ var app = {
         team2Score.html(this.team2Score);
         team1Name.html(this.team1Name);
         team2Name.html(this.team2Name);
-        question.html("Welcome to Fantasy Feud!");
+        //question.html("Welcome to Fantasy Feud!");
+        gsap.to(question, {
+            delay: 1,
+            duration: 2.5, 
+            text: {
+                value: "Welcome to Fantasy Feud!"
+            }
+        });
         col1.empty();
         col2.empty();
         $('#mutedImg').click(this.toggleMuteAll);

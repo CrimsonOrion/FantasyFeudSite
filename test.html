@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+        <style>
+            .start {
+                color: red;
+            }
+
+            .finish {
+                color: blue;
+            }
+
+            div {
+                font-size: 16px;
+            }
+
+            span {
+                font-size: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
+        <script src="js/TextPlugin.min.js"></script>
+        <div id="quote">SplitText test... Let's see if this works.</div>
+        <span class="start" id="question">MAYBE...</span>
+    </body>
+    <script>
+        gsap.registerPlugin(TextPlugin);
+        gsap.defaultEase = Linear.easeNone;
+        var question = $('#question');
+        gsap.to(question, {
+            duration: 5, 
+            text: {
+                value: "MAYBE... It just will?",
+                newClass: "finish"
+            }
+        });
+    </script>
+</html>

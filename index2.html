@@ -10,7 +10,8 @@
         <audio id="sound" muted="" src="media/Moogles_Answer_Right.mp3">Your browser does not support the audio element</audio>
         <img id="mutedImg" src="img/muted.png">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
+        <script src="js/TextPlugin.min.js"></script>
         
         <!--- Strikes --->
         <div class="strikes"></div>
@@ -25,7 +26,7 @@
             
             <!--- Question --->
             <div class="questionHolder">
-                <span class="question">How many Animas have you completed?</span>
+                <span class="question"></span>
             </div>
             
             <!--- Answers --->
@@ -136,4 +137,14 @@
             </ul>
         </div>
     </body>
+    <script>
+        gsap.registerPlugin(TextPlugin);
+        var question = $('.question');
+        gsap.to(question, {
+            duration: 5, 
+            text: {
+                value: "How Many Animas Have You Completed?"
+            }
+        });
+    </script>
 </html>
