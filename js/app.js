@@ -1,7 +1,7 @@
 var app = {
     version: 1,
-    //source: new EventSource('http://localhost:3001/events'),
-    source: new EventSource('https://fierce-citadel-94246.herokuapp.com/events'),
+    source: new EventSource('http://localhost:3001/events'),
+    //source: new EventSource('https://fierce-citadel-94246.herokuapp.com/events'),
     board: $(""+
         "<!--- Strikes --->"+
         "<div class='strikes'></div>"+
@@ -47,7 +47,7 @@ var app = {
     team2Score: 0,
     team1Members: [],
     team2Members: [],
-    questionText: "Welcome to Fantasy Feud!",
+    questionText: "",
 
     buildBoard() {
         gsap.registerPlugin(TextPlugin);
@@ -56,7 +56,6 @@ var app = {
         let team2Score = this.board.find("#team2Score");
         let team1Name = this.board.find("#team1Name");
         let team2Name = this.board.find("#team2Name");
-        let question = this.board.find(".question");
         let col1 = this.board.find(".col1");
         let col2 = this.board.find(".col2");
         boardScore.html(0);
@@ -64,13 +63,11 @@ var app = {
         team2Score.html(this.team2Score);
         team1Name.html(this.team1Name);
         team2Name.html(this.team2Name);
-        //app.checkQuestion();
-        //question.html("Welcome to Fantasy Feud!");
         col1.empty();
         col2.empty();
         $('#mutedImg').click(this.toggleMuteAll);
         $('body').append(this.board);
-        app.checkQuestion();
+        //app.checkQuestion();
     },
 
     startListener() {
@@ -94,6 +91,11 @@ var app = {
                 app.updateBoardRotate();
             }
         });
+
+        if (this.data.length === 0) {
+            this.questionText = 'Welcome to Fantasy Feud!';
+            $('.question').html(this.questionText);
+        }
     },
 
     updateBoardRotate() {
@@ -107,7 +109,6 @@ var app = {
         let team2Name = $("#team2Name");
         let team1Members = $("#team1Members");
         let team2Members = $("#team2Members");
-        let question = $(".question");
         let col1 = $(".col1");
         let col2 = $(".col2");
         col1.empty();
@@ -123,7 +124,6 @@ var app = {
         app.insertTeamMembers(team1Members, this.data.Team1Members);
         app.insertTeamMembers(team2Members, this.data.Team2Members);
         app.checkQuestion();
-        //question.html(this.data.Question);//.replace(/&x22;/gi,'"'));
         let boardScoreValue = 0;
         let visible = false;
         for (let i = 0; i < 8; i++) {
@@ -137,6 +137,7 @@ var app = {
             }
             else {
                 cardHolderDiv = app.cardHolderBlank();
+                visible = false;
             }
             let parentDiv = (i < 4) ? col1 : col2;
             let cardHolders = cardHolderDiv.find('.cardHolder')
@@ -172,7 +173,6 @@ var app = {
             boardScore.html(boardScoreValue);
         }
 
-        let dataStrikes = this.data.Strikes;
         if (this.strikes < this.data.Strikes) {
             app.wrongAnswer();
         } else if (this.data.Strikes < this.strikes) {
@@ -191,7 +191,8 @@ var app = {
 
     checkQuestion() {
         if (this.data.length === 0) {
-            app.changeQuestion(this.questionText, 1, 2.5);
+            this.questionText = "Welcome to Fantasy Feud!";
+            $('question').html(this.questionText);
         } else if (this.questionText !== this.data.Question) {
             this.changeQuestion("",0,0);
             this.changeQuestion(this.data.Question, 1, 2.5);
@@ -200,6 +201,12 @@ var app = {
     },
 
     changeQuestion(qText, delay, duration) {
+        if (delay !== 0) {
+            let sound = $('#sound');
+            let src = 'media/zingle_ex3_que_start.mp3';
+            sound.attr('src', src);
+            app.playBuzzer();
+        }
         let q = $('.question');
         gsap.to(q, {
             delay: delay,
@@ -240,14 +247,16 @@ var app = {
 
     wrongAnswer() {
         let src;
+        let strikeDiv = $('.strikes');
         switch (++this.strikes){
             case 1:
             case 2:
             case 3:
-                src = 'media/Nope.mp3'
+                src = 'media/zingle_pvpii_die.mp3'
                 break;
             case 4:
                 src = 'media/Illberd-Sloppy.mp3'
+                strikeDiv.empty();
                 break;
             default:
                 console.log('switch statement didn\'t work.')
@@ -255,15 +264,15 @@ var app = {
         }
         let sound = $('#sound');
         sound.attr('src', src);
-        var strikeSpan = $('<span class="strikex">X</span>');
-        var strikeDiv = $('.strikes');
+        let strikeSpan = $('<span class="strikex">X</span>');
         strikeDiv.append(strikeSpan);
         app.playBuzzer();
-        gsap.to(".strikes", {duration: 1, opacity: 100});
-        gsap.to(".strikes", {duration: 1, opacity: 0, ease:"power2.inOut"});
+        gsap.to(strikeDiv, {duration: 1, opacity: 100});
+        gsap.to(strikeDiv, {duration: 1, opacity: 0, ease:"power2.inOut"});
     },
 
     playBuzzer() {
+        document.getElementById('sound').volume = 0.3;
         let x = document.getElementById('sound').play();
 
         if (x !== undefined) {
@@ -275,8 +284,6 @@ var app = {
                 // autoplay was prevented
             })
         }
-        //x.muted = true;
-        //x.play();
     },
 
     toggleMuteAll() {
