@@ -1,7 +1,7 @@
 var app = {
     version: 1,
-    source: new EventSource('http://localhost:3001/events'),
-    //source: new EventSource('https://fierce-citadel-94246.herokuapp.com/events'),
+    //source: new EventSource('http://localhost:3001/events'),
+    source: new EventSource('https://fierce-citadel-94246.herokuapp.com/events'),
     board: $(""+
         "<!--- Strikes --->"+
         "<div class='strikes'></div>"+
@@ -272,7 +272,7 @@ var app = {
     },
 
     playBuzzer() {
-        document.getElementById('sound').volume = 0.3;
+        document.getElementById('sound').volume = 0.2;
         let x = document.getElementById('sound').play();
 
         if (x !== undefined) {
