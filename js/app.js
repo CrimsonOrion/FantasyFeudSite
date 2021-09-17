@@ -29,12 +29,12 @@ var app = {
         "<!--- Teams --->" +
         "<div class='team'>" +
             "<ul class='teamMembers' id='team1Members'>" +
-                "<li id='team1Name'>Team 1</li>" +
+                "<li id='team1Name' />" +
             "</ul>" +
         "</div>" +
         "<div class='team'>" +
             "<ul class='teamMembers' id='team2Members'>" +
-                "<li id='team2Name'>Team 2</li>" +
+                "<li id='team2Name' />" +
             "</ul>" +
         "</div>"
     ),
@@ -67,7 +67,6 @@ var app = {
         col2.empty();
         $('#mutedImg').click(this.toggleMuteAll);
         $('body').append(this.board);
-        //app.checkQuestion();
     },
 
     startListener() {
@@ -86,6 +85,9 @@ var app = {
                 
                 if (this.data.length > 1) {
                     this.data = this.data[this.data.length - 1];
+                }
+                else {
+                    this.data = this.data[0];
                 }
                 
                 app.updateBoardRotate();
@@ -184,7 +186,7 @@ var app = {
     insertTeamMembers(teamMembersUL, teamMembers) {
         for (let i = 0; i < teamMembers.length; i++) {
             let member = teamMembers[i];
-            let memberNameLI = "<li" + (member.Active === 1 ? " id='active'>" : ">") + member.Name + "</li>";
+            let memberNameLI = "<li" + (member.Active === 1 ? " class='active'>" : ">") + member.Name + "</li>";
             teamMembersUL.append(memberNameLI);
         }
     },

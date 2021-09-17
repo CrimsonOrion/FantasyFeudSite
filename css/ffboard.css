@@ -256,7 +256,7 @@ body {
   font-family: 'finalfantasy';
   font-size: 40px;
   color: gray;
-  width: fit-content;
+  width: max-content;
   border: 2px solid white;
   background: black;
   padding: 10px;
@@ -277,7 +277,7 @@ body {
   width: auto;
   text-align: left;
   float: left;
-  margin-right: 15;
+  margin-right: 15px;
 }
 
 #team1Name, #team2Name{
@@ -285,7 +285,7 @@ body {
   padding: 0px 10px;
 }
 
-li#active {
+li.active {
   /* Goldenrod1 */
   color: #FFC125;
 }
