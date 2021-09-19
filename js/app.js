@@ -1,7 +1,7 @@
 var app = {
     version: 1,
-    //source: new EventSource('http://localhost:3001/events'),
-    source: new EventSource('https://fierce-citadel-94246.herokuapp.com/events'),
+    source: new EventSource('http://localhost:3001/events'),
+    //source: new EventSource('https://fierce-citadel-94246.herokuapp.com/events'),
     board: $(""+
         "<!--- Strikes --->"+
         "<div class='strikes'></div>"+
@@ -86,7 +86,7 @@ var app = {
                 if (this.data.length > 1) {
                     this.data = this.data[this.data.length - 1];
                 }
-                else {
+                else if (this.data.length === 1) {
                     this.data = this.data[0];
                 }
                 
