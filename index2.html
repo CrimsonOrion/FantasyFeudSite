@@ -1,150 +1,123 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Fantasy Feud</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-        <link rel="stylesheet" href="css/fonts.css">
-        <link rel="stylesheet" href="css/ffboard.css">
-    </head>
-    <body>
-        <audio id="sound" muted="" src="media/Moogles_Answer_Right.mp3">Your browser does not support the audio element</audio>
-        <img id="mutedImg" src="img/muted.png">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
-        <script src="js/TextPlugin.min.js"></script>
-        
-        <!--- Strikes --->
-        <div class="strikes"></div>
-        
-        <!--- Game Board --->
-        <div class="gameBoard">
+<!DOCTYPE html>
+<html lang="en">
 
-            <!--- Scores --->
-            <div class="score" id="boardScore">100</div>
-            <div class="score" id="team1Score">999</div>
-            <div class="score" id="team2Score">999</div>
-            
-            <!--- Question --->
-            <div class="questionHolder">
-                <span class="question"></span>
-            </div>
-            
-            <!--- Answers --->
-            <div class="colHolder">
-                <div class="col1">
-                    <div class="cardHolder">
-                        <div class="card" style="background: url(&quot;img/01.png&quot;); transform-style: preserve-3d; transform: rotateX(-180deg);">
-                            <div class="front" style="backface-visibility: hidden;"></div>
-                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
-                                <span>ONE</span>
-                                <b class="LBG">38</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardHolder">
-                        <div class="card" style="background: url(&quot;img/02.png&quot;); transform-style: preserve-3d;">
-                            <div class="front" style="backface-visibility: hidden;"></div>
-                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
-                                <span>ZERO</span>
-                                <b class="LBG">28</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardHolder">
-                        <div class="card" style="background: url(&quot;img/03.png&quot;); transform-style: preserve-3d;">
-                            <div class="front" style="backface-visibility: hidden;"></div>
-                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
-                                <span>TWO</span>
-                                <b class="LBG">17</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardHolder">
-                        <div class="card" style="background: url(&quot;img/04.png&quot;); transform-style: preserve-3d;">
-                            <div class="front" style="backface-visibility: hidden;"></div>
-                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
-                                <span>THREE</span>
-                                <b class="LBG">9</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col2">
-                    <div class="cardHolder">
-                        <div class="card" style="background: url(&quot;img/05.png&quot;); transform-style: preserve-3d;">
-                            <div class="front" style="backface-visibility: hidden;"></div>
-                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
-                                <span>FOUR</span>
-                                <b class="LBG">4</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardHolder">
-                        <div class="card" style="background: url(&quot;img/06.png&quot;); transform-style: preserve-3d; transform: rotateX(-180deg);">
-                            <div class="front" style="backface-visibility: hidden;"></div>
-                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
-                                <span>FIVE</span>
-                                <b class="LBG">2</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardHolder">
-                        <div class="card" style="background: url(&quot;img/07.png&quot;); transform-style: preserve-3d; transform: rotateX(-180deg);">
-                            <div class="front" style="backface-visibility: hidden;"></div>
-                            <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
-                                <span>SIX</span>
-                                <b class="LBG">1</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardHolder empty">
-                        <div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fantasy Feud</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/ffboard.css">
+</head>
 
-        <!-- Teams -->
+<body>
+    <audio id="sound" muted="" src="media/Moogles_Answer_Right.mp3">Your browser does not support the audio
+        element</audio>
+    <img id="mutedImg" src="img/unmuted.png" alt="Sound Button">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
+    <script src="js/TextPlugin.min.js"></script>
+    
+
+    <!--- Strikes --->
+    <div class="strikes"></div>
+
+    <!--- Game Board --->
+    <div class="gameBoard">
+
+        <!--- Scores --->
+        <div class="score" id="boardScore">39</div>
+        <div class="score" id="team1Score">25</div>
         <div class="team">
             <ul class="teamMembers" id="team1Members">
-                <li id="team1Name">The Awesome</li>
-                <li>Randy</li>
-                <li id="active">Jim</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
+                <li id="team1Name">Scions</li>
+                <li>Thancred</li>
+                <li class="active">Y'shtola</li>
+                <li>Gra'ha</li>
             </ul>
+        </div>
+        <div class="score" id="team2Score">0</div>
+
+        <!--- Question --->
+        <div class="questionHolder">
+            <span class="question">Who's Ready For Fantasy Feud?</span>
         </div>
 
-        <div class="team">
-            <ul class="teamMembers" id="team2Members">
-                <li id="team2Name">The Awesome</li>
-                <li id="active">Randy</li>
-                <li>Jim</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
-                <li>Shellie</li>
-            </ul>
+        <!--- Answers --->
+        <div class="colHolder">
+            <div class="col1">
+                <div class="cardHolder">
+                    <div class="card" style="background: url(&quot;img/01.png&quot;); transform-style: preserve-3d;">
+                        <div class="front" style="backface-visibility: hidden;"></div>
+                        <div class="back DBG" style="transform: translate(0px, 0px); backface-visibility: hidden;">
+                            <span>Me</span><b class="LBG">25</b></div>
+                    </div>
+                </div>
+                <div class="cardHolder">
+                    <div class="card" style="background: url(&quot;img/02.png&quot;); transform-style: preserve-3d;">
+                        <div class="front" style="backface-visibility: hidden;"></div>
+                        <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
+                            <span></span><b class="LBG">0</b></div>
+                    </div>
+                </div>
+                <div class="cardHolder">
+                    <div class="card" style="background: url(&quot;img/03.png&quot;); transform-style: preserve-3d;">
+                        <div class="front" style="backface-visibility: hidden;"></div>
+                        <div class="back DBG" style="transform: translate(0px, 0px); backface-visibility: hidden;">
+                            <span>Them</span><b class="LBG">10</b></div>
+                    </div>
+                </div>
+                <div class="cardHolder">
+                    <div class="card" style="background: url(&quot;img/04.png&quot;); transform-style: preserve-3d;">
+                        <div class="front" style="backface-visibility: hidden;"></div>
+                        <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
+                            <span></span><b class="LBG">0</b></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col2">
+                <div class="cardHolder">
+                    <div class="card" style="background: url(&quot;img/05.png&quot;); transform-style: preserve-3d;">
+                        <div class="front" style="backface-visibility: hidden;"></div>
+                        <div class="back DBG" style="transform: translate(0px, 0px); backface-visibility: hidden;">
+                            <span>Lalas</span><b class="LBG">4</b></div>
+                    </div>
+                </div>
+                <div class="cardHolder">
+                    <div class="card" style="background: url(&quot;img/06.png&quot;); transform-style: preserve-3d;">
+                        <div class="front" style="backface-visibility: hidden;"></div>
+                        <div class="back DBG" style="transform: rotateX(180deg); backface-visibility: hidden;">
+                            <span></span><b class="LBG">0</b></div>
+                    </div>
+                </div>
+                <div class="cardHolder empty">
+                    <div></div>
+                </div>
+                <div class="cardHolder empty">
+                    <div></div>
+                </div>
+            </div>
         </div>
-    </body>
-    <script>
-        gsap.registerPlugin(TextPlugin);
-        var question = $('.question');
-        gsap.to(question, {
-            duration: 5, 
-            text: {
-                value: "How Many Animas Have You Completed?"
-            }
-        });
-    </script>
+    </div>
+    <!--- Teams --->
+    <!--<div class="team">
+        <ul class="teamMembers" id="team1Members">
+            <li id="team1Name">Scions</li>
+            <li>Thancred</li>
+            <li class="active">Y'shtola</li>
+            <li>Gra'ha</li>
+        </ul>
+    </div>-->
+    <div class="team">
+        <ul class="teamMembers" id="team2Members">
+            <li id="team2Name">Garleans</li>
+            <li class="active">Zenos</li>
+            <li>Fandaniel</li>
+            <li>Voidsent</li>
+        </ul>
+    </div>
+</body>
+
 </html>
