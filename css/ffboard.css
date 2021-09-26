@@ -10,7 +10,6 @@ body {
   background-size: cover;
   background-position-x: center;
   background-position-y: center;
-  /*filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#a7cfdf', endColorstr='#23538a', GradientType=0);*/
   padding: 25px;
 }
 
@@ -148,7 +147,7 @@ body {
   height: 100%;
   border: 2px solid #003c7b;
   line-height: 50px;
-  /*background: url('img/01.png') 0% 0% / 475px 55px no-repeat;*/
+  background-position: center;
 }
 
 .gameBoard .cardHolder .back {
@@ -181,10 +180,12 @@ body {
 .gameBoard .cardHolder>div,
 .gameBoard .LBG {
   background: darkred;
+  transform-style: preserve-3d;
 }
 
 .gameBoard .cardHolder>div:empty {
   background:url('../img/Blank.png') goldenrod;
+  background-position: center;
 }
 
 .gameBoard .score,
