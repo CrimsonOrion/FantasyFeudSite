@@ -149,15 +149,14 @@ var app = {
 
             gsap.set(cardHolders , {perspective:800});
             gsap.set(cards       , {transformStyle:"preserve-3d"});
-            gsap.set(backs       , {rotationX:this.cardStates[i] === 1 ? 0 : 180});
+            gsap.set(backs       , {rotateX:this.cardStates[i] === 1 ? 0 : 180});
             gsap.set(cardSides   , {backfaceVisibility:"hidden"});
 
             let flipped = this.cardStates[i] === 1 ? true : false;
             $(cardHolderDiv).appendTo(parentDiv);
 
             if (visible && !flipped) {
-                let cardRotate = -180;
-                gsap.to(cards, 1, {rotationX:cardRotate, ease:backs.easeOut});
+                gsap.to(cards, 1, {rotateX:180});
                 this.cardStates[i] = 1;
                 let sound = $('#sound');
                 let src = 'media/Moogles_Answer_Right.mp3';
@@ -166,8 +165,8 @@ var app = {
                 flipped = true;
             }
             else if (!visible && flipped) {
-                let cardRotate = 180;
-                gsap.to(cards, 1, {rotationX:cardRotate, ease:backs.easeOut});
+                gsap.from(cards, 1, {rotateX:180});
+                gsap.to(backs, 0, {rotateX:180});
                 this.cardStates[i] = 0;
                 flipped = false;
             }
@@ -222,7 +221,7 @@ var app = {
     cardHolderFill(data, picNum) {
         let cardHolderDiv = $("" + 
             "<div class='cardHolder'>"+
-                "<div class='card' style=\"background: url(img/0" + picNum + ".png)\">"+
+                "<div class='card' style=\"background: url(img/0" + picNum + ".png) center center;\">"+
                     "<div class='front'>"+
                 
                     "</div>"+
